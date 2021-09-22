@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: build-credit-app-result-tkn
+spec:
+  pipelineRef:
+    name: build-quarkus-app
+  workspaces:
+  - name: build-ws
+    persistentvolumeclaim:
+      claimName: m2-cache
+  - name: maven-settings
+    emptyDir: {}
+  params:
+  - name: repo-url
+    value: https://github.com/jbcodeforce/credit-origination-app
+  - name: revision
+    value: main
+  - name: DOCKERFILE
+    value: src/main/docker/Dockerfile.jvm
+  - name: IMAGE_NAME
+    value: quay.io/jbcodeforce/credit-origination-app

@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: credit-origination-source
+  namespace: risk-scoring-cicd
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/jbcodeforce/credit-origination-app
+    - name: revision
+      value: master
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: credit-origination-image-native
+  namespace: risk-scoring-cicd
+spec:
+  type: image
+  params:
+    - name: url
+      value: quay.io/jbcodeforce/credit-origination:native
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: credit-origination-image-jvm
+  namespace: risk-scoring-cicd
+spec:
+  type: image
+  params:
+    - name: url
+      value: quay.io/jbcodeforce/credit-origination-app
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: m2-cache
+  namespace: risk-scoring-cicd
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
