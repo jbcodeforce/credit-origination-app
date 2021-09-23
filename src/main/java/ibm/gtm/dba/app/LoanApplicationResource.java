@@ -1,5 +1,7 @@
 package ibm.gtm.dba.app;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,12 +20,6 @@ public class LoanApplicationResource {
     public String version;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
-    }
-
-    @GET
     @Path("/version")
     @Produces(MediaType.APPLICATION_JSON)
     public String getVersion(){
@@ -35,5 +31,10 @@ public class LoanApplicationResource {
     public String createLoanApplication(LoanApplication loanApplication){
         System.out.println(loanApplication.toString());
         return "{ \"loanApplicationId\" : 123 \"}";
+    }
+
+    @GET
+    public List<LoanApplication> getAll(){
+        return null;
     }
 }

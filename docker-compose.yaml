@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  postgresql:
+    container_name: postgres
+    hostname: postgres
+    image:  docker.io/bitnami/postgresql:13.2.0-debian-10-r11
+    environment:
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: pgpwd
+      POSTGRESQL_DATABASE: loandb
+      BITNAMI_DEBUG: "false"
+      ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/bitnami/postgresql
+  

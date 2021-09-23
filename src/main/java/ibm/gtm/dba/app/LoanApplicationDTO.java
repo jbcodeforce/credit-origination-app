@@ -1,11 +1,6 @@
-package ibm.gtm.dba.domain;
+package ibm.gtm.dba.app;
 
-import javax.persistence.Entity;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-@Entity
-public class LoanApplication extends PanacheEntity{
+public class LoanApplicationDTO {
     public String loanApplicationId;
     public String primaryApplicantName;
     public String secondaryApplicantName;
